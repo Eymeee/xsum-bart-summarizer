@@ -4,32 +4,32 @@
 
 This project fine-tunes `facebook/bart-base` on the **XSum dataset** to perform **abstractive text summarization** of BBC news articles. Unlike extractive methods, the model generates novel, concise single-sentence summaries in its own words. The final deliverable is a full **Gradio web app** with the fine-tuned model published on **HuggingFace Hub** and the codebase on **GitHub**.
 
-**Primary goal:** Demonstrate an end-to-end NLP fine-tuning pipeline — from raw data to a live interactive demo — as a portfolio project.
+**Primary goal:** Demonstrate an end-to-end NLP fine-tuning pipeline, from raw data to a live interactive demo, as a portfolio project.
 
 ---
 
 ## ✅ Implementation Checklist
 
 ### Phase 1 — Environment Setup
-- [ ] Install `uv` if not already available (`pip install uv` or via the [official installer](https://docs.astral.sh/uv/getting-started/installation/))
-- [ ] Initialize the project with `uv init` and create a virtual environment with `uv venv`
-- [ ] Activate the environment (`.venv/bin/activate` on Unix / `.venv\Scripts\activate` on Windows)
-- [ ] Install core dependencies with `uv add`:
+- [x] Install `uv` if not already available (`pip install uv` or via the [official installer](https://docs.astral.sh/uv/getting-started/installation/))
+- [x] Initialize the project with `uv init` and create a virtual environment with `uv venv`
+- [x] Activate the environment (`.venv/bin/activate` on Unix / `.venv\Scripts\activate` on Windows)
+- [x] Install core dependencies with `uv add`:
   - `torch`, `transformers`, `datasets`, `evaluate`
   - `accelerate`, `sentencepiece`, `rouge_score`
   - `bert_score`, `wandb`, `gradio`
-- [ ] Verify dependencies are locked in `uv.lock` and synced via `uv sync`
-- [ ] Log in to HuggingFace Hub (`huggingface-cli login`)
-- [ ] Log in to Weights & Biases (`wandb login`)
-- [ ] Initialize project repository with `.gitignore`, `pyproject.toml`, and folder structure
+- [x] Verify dependencies are locked in `uv.lock` and synced via `uv sync`
+- [x] Log in to HuggingFace Hub (`huggingface-cli login`)
+- [x] Log in to Weights & Biases (`wandb login`)
+- [x] Initialize project repository with `.gitignore`, `pyproject.toml`, and folder structure
 
 ### Phase 2 — Data Exploration (EDA)
-- [ ] Load XSum dataset using `datasets.load_dataset("xsum")`
-- [ ] Inspect dataset splits: train / validation / test sizes
-- [ ] Plot distribution of article lengths (token count)
-- [ ] Plot distribution of summary lengths (token count)
-- [ ] Compute and report the abstractiveness ratio (n-gram novelty of summaries vs. articles)
-- [ ] Display a few samples to understand data format (`document`, `summary`, `id`)
+- [x] Load XSum dataset using `datasets.load_dataset("EdinburghNLP/xsum")`
+- [x] Inspect dataset splits: train / validation / test sizes
+- [x] Plot distribution of article lengths (token count)
+- [x] Plot distribution of summary lengths (token count)
+- [x] Compute and report the abstractiveness ratio (n-gram novelty of summaries vs. articles)
+- [x] Display a few samples to understand data format (`document`, `summary`, `id`)
 
 ### Phase 3 — Preprocessing
 - [ ] Load `BartTokenizer` from `facebook/bart-base`
@@ -86,23 +86,8 @@ This project fine-tunes `facebook/bart-base` on the **XSum dataset** to perform 
 
 ## ⏭️ Next Step
 
-**Start with Phase 1 — Environment Setup.**
+**Continue with Phase 3 — Preprocessing.**
 
-Create the project folder structure, initialize the virtual environment, and install all dependencies. The recommended folder layout is:
+Implement `src/preprocess.py` so the project can tokenize XSum articles and summaries with `facebook/bart-base`, using `max_input_length = 512`, `max_target_length = 128`, and `DataCollatorForSeq2Seq` for dynamic padding.
 
-```
-summarization-project/
-├── data/               # EDA scripts and outputs
-├── src/
-│   ├── preprocess.py
-│   ├── train.py
-│   ├── evaluate.py
-│   └── inference.py
-├── app.py              # Gradio app entry point
-├── pyproject.toml      # uv project config & dependencies
-├── uv.lock             # locked dependency versions
-├── AGENTS.md
-└── README.md
-```
-
-Once the environment is ready and `import transformers` runs without errors, move on to **Phase 2 — EDA**.
+The EDA outputs are generated locally under `data/eda/`.
