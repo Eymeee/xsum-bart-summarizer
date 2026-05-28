@@ -32,12 +32,12 @@ This project fine-tunes `facebook/bart-base` on the **XSum dataset** to perform 
 - [x] Display a few samples to understand data format (`document`, `summary`, `id`)
 
 ### Phase 3 — Preprocessing
-- [ ] Load `BartTokenizer` from `facebook/bart-base`
-- [ ] Write a `preprocess_function` that tokenizes both `document` (input) and `summary` (label)
-- [ ] Set `max_input_length = 512` and `max_target_length = 128`
-- [ ] Apply `dataset.map(preprocess_function, batched=True)` on all splits
-- [ ] Set up `DataCollatorForSeq2Seq` with dynamic padding
-- [ ] Verify tokenized samples and decoded outputs look correct
+- [x] Load `BartTokenizer` from `facebook/bart-base`
+- [x] Write a `preprocess_function` that tokenizes both `document` (input) and `summary` (label)
+- [x] Set `max_input_length = 512` and `max_target_length = 64`
+- [x] Apply `dataset.map(preprocess_function, batched=True)` on all splits
+- [x] Set up `DataCollatorForSeq2Seq` with dynamic padding
+- [x] Verify tokenized samples and decoded outputs look correct
 
 ### Phase 4 — Fine-Tuning
 - [ ] Load `BartForConditionalGeneration` from `facebook/bart-base`
@@ -86,8 +86,8 @@ This project fine-tunes `facebook/bart-base` on the **XSum dataset** to perform 
 
 ## ⏭️ Next Step
 
-**Continue with Phase 3 — Preprocessing.**
+**Continue with Phase 4 — Fine-Tuning.**
 
-Implement `src/preprocess.py` so the project can tokenize XSum articles and summaries with `facebook/bart-base`, using `max_input_length = 512`, `max_target_length = 128`, and `DataCollatorForSeq2Seq` for dynamic padding.
+Implement `src/train.py` so the project can fine-tune `facebook/bart-base` on the preprocessed XSum dataset, track runs with Weights & Biases, and save the best checkpoint locally.
 
-The EDA outputs are generated locally under `data/eda/`.
+The tokenized dataset and tokenizer are generated locally under `data/processed/xsum_bart_base/`.
