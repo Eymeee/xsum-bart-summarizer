@@ -40,17 +40,17 @@ This project fine-tunes `facebook/bart-base` on the **XSum dataset** to perform 
 - [x] Verify tokenized samples and decoded outputs look correct
 
 ### Phase 4 — Fine-Tuning
-- [ ] Load `BartForConditionalGeneration` from `facebook/bart-base`
-- [ ] Define `compute_metrics` function using ROUGE-1, ROUGE-2, ROUGE-L via `evaluate.load("rouge")`
-- [ ] Configure `Seq2SeqTrainingArguments`:
-  - `output_dir`, `num_train_epochs` (3–5)
-  - `per_device_train_batch_size` (4 or 8 depending on GPU)
-  - `learning_rate` (5e-5), `warmup_steps`, `weight_decay`
+- [x] Load `BartForConditionalGeneration` from `facebook/bart-base`
+- [x] Define `compute_metrics` function using ROUGE-1, ROUGE-2, ROUGE-L via `evaluate.load("rouge")`
+- [x] Configure `Seq2SeqTrainingArguments`:
+  - `output_dir`, `num_train_epochs` (3)
+  - `per_device_train_batch_size=2`, `gradient_accumulation_steps=8` for RTX 5050 GPU
+  - `learning_rate` (5e-5), `warmup_ratio`, `weight_decay`
   - `predict_with_generate=True`
-  - `logging_dir`, `report_to="wandb"`
-- [ ] Instantiate `Seq2SeqTrainer` with model, args, datasets, tokenizer, collator, and compute_metrics
-- [ ] Run training with `trainer.train()`
-- [ ] Save best checkpoint with `trainer.save_model()`
+  - `report_to="wandb"` for full training
+- [x] Instantiate `Seq2SeqTrainer` with model, args, datasets, tokenizer, collator, and compute_metrics
+- [ ] Run full training with `trainer.train()`
+- [ ] Save best full-training checkpoint with `trainer.save_model()`
 
 ### Phase 5 — Evaluation
 - [ ] Run `trainer.evaluate()` on the test set
@@ -88,6 +88,6 @@ This project fine-tunes `facebook/bart-base` on the **XSum dataset** to perform 
 
 **Continue with Phase 4 — Fine-Tuning.**
 
-Implement `src/train.py` so the project can fine-tune `facebook/bart-base` on the preprocessed XSum dataset, track runs with Weights & Biases, and save the best checkpoint locally.
+Run full fine-tuning with `src/train.py` so the project can fine-tune `facebook/bart-base` on the preprocessed XSum dataset, track runs with Weights & Biases, and save the best checkpoint locally.
 
 The tokenized dataset and tokenizer are generated locally under `data/processed/xsum_bart_base/`.
