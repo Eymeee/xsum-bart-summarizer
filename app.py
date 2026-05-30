@@ -11,7 +11,7 @@ from src.inference import summarize_with_warning # pyrefly: ignore
 
 APP_TITLE = "XSum BART Summarizer"
 MODEL_LABEL = "facebook/bart-base fine-tuned on XSum"
-HF_MODEL_URL = "https://huggingface.co/your-username/xsum-bart-summarizer"
+HF_MODEL_URL = "https://huggingface.co/Eymeee/xsum-bart-summarizer"
 
 EXAMPLES = [
     [

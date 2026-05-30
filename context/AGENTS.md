@@ -2,7 +2,7 @@
 
 ## 📌 Project Brief
 
-This project fine-tunes `facebook/bart-base` on the **XSum dataset** to perform **abstractive text summarization** of BBC news articles. Unlike extractive methods, the model generates novel, concise single-sentence summaries in its own words. The final deliverable is a full **Gradio web app** with the fine-tuned model published on **HuggingFace Hub** and the codebase on **GitHub**.
+This project fine-tunes `facebook/bart-base` on the **XSum dataset** to perform **abstractive text summarization** of BBC news articles. Unlike extractive methods, the model generates novel, concise single-sentence summaries in its own words. The final deliverable is a local **Gradio web app** with the fine-tuned model published on **HuggingFace Hub** and the codebase on **GitHub**.
 
 **Primary goal:** Demonstrate an end-to-end NLP fine-tuning pipeline, from raw data to a live interactive demo, as a portfolio project.
 
@@ -72,22 +72,22 @@ This project fine-tunes `facebook/bart-base` on the **XSum dataset** to perform 
 - [x] Test the app locally with `python app.py`
 
 ### Phase 7 — Publishing
-- [ ] Push fine-tuned model and tokenizer to HuggingFace Hub (`model.push_to_hub(...)`)
-- [ ] Write a `README.md` Model Card including:
+- [x] Push fine-tuned model and tokenizer to HuggingFace Hub (`Eymeee/xsum-bart-summarizer`)
+- [x] Write a `deploy/model/README.md` Model Card including:
   - Model description and base model
   - Dataset and training details
   - ROUGE / BERTScore results
   - How to run inference
   - Limitations and future work
-- [ ] Deploy Gradio app to HuggingFace Spaces
-- [ ] Push full project to GitHub with a clean `README.md`
+- [x] Keep `app.py` as a local Gradio demo and link it to the published model repo
+- [x] Push full project to GitHub with a clean `README.md`
 
 ---
 
 ## ⏭️ Next Step
 
-**Continue with Phase 7 — Publishing.**
+**Project complete.**
 
-Publish the fine-tuned model and Gradio app. The completed Phase 6 app loads `models/bart_xsum_finetuned/`, runs local summarization through `src/inference.py`, and launches from `app.py`.
+The fine-tuned model is published at `https://huggingface.co/Eymeee/xsum-bart-summarizer`, and the completed Phase 6 app remains a local demo that loads `models/bart_xsum_finetuned/`, runs summarization through `src/inference.py`, and launches from `app.py`.
 
 The tokenized dataset and tokenizer are generated locally under `data/processed/xsum_bart_base/`.
