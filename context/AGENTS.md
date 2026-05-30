@@ -49,8 +49,8 @@ This project fine-tunes `facebook/bart-base` on the **XSum dataset** to perform 
   - `predict_with_generate=True`
   - `report_to="wandb"` for full training
 - [x] Instantiate `Seq2SeqTrainer` with model, args, datasets, tokenizer, collator, and compute_metrics
-- [ ] Run full training with `trainer.train()`
-- [ ] Save best full-training checkpoint with `trainer.save_model()`
+- [x] Run full training with `trainer.train()` for 1 epoch on the full train split
+- [x] Save full-training checkpoint with `trainer.save_model()` to `models/bart_xsum_finetuned/`
 
 ### Phase 5 — Evaluation
 - [ ] Run `trainer.evaluate()` on the test set
@@ -86,8 +86,8 @@ This project fine-tunes `facebook/bart-base` on the **XSum dataset** to perform 
 
 ## ⏭️ Next Step
 
-**Continue with Phase 4 — Fine-Tuning.**
+**Continue with Phase 5 — Evaluation.**
 
-Run full fine-tuning with `src/train.py` so the project can fine-tune `facebook/bart-base` on the preprocessed XSum dataset, track runs with Weights & Biases, and save the best checkpoint locally.
+Run test-set evaluation for the fine-tuned `facebook/bart-base` checkpoint saved at `models/bart_xsum_finetuned/`. The completed Phase 4 run used the full train split for 1 epoch and wrote training metrics to `outputs/bart_xsum/training_summary.json`.
 
 The tokenized dataset and tokenizer are generated locally under `data/processed/xsum_bart_base/`.
