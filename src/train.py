@@ -132,10 +132,17 @@ def as_list(value: Any) -> list[Any]:
     return list(value)
 
 
-def replace_label_mask(labels: list[list[int]], pad_token_id: int) -> list[list[int]]:
+def sanitize_token_ids(
+    token_ids: list[list[int]],
+    pad_token_id: int,
+    vocab_size: int,
+) -> list[list[int]]:
     return [
-        [pad_token_id if token_id == -100 else token_id for token_id in label]
-        for label in labels
+        [
+            token_id if 0 <= int(token_id) < vocab_size else pad_token_id
+            for token_id in sequence
+        ]
+        for sequence in token_ids
     ]
 
 
@@ -145,7 +152,16 @@ def build_compute_metrics(tokenizer: BartTokenizer):
     def compute_metrics(eval_prediction: EvalPrediction) -> dict[str, float]:
         predictions = as_list(eval_prediction.predictions)
         labels = as_list(eval_prediction.label_ids)
-        labels = replace_label_mask(labels, tokenizer.pad_token_id)
+        predictions = sanitize_token_ids(
+            predictions,
+            pad_token_id=tokenizer.pad_token_id,
+            vocab_size=tokenizer.vocab_size,
+        )
+        labels = sanitize_token_ids(
+            labels,
+            pad_token_id=tokenizer.pad_token_id,
+            vocab_size=tokenizer.vocab_size,
+        )
 
         decoded_predictions = tokenizer.batch_decode(
             predictions, skip_special_tokens=True
