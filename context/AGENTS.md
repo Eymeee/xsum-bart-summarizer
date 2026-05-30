@@ -61,15 +61,15 @@ This project fine-tunes `facebook/bart-base` on the **XSum dataset** to perform 
 - [x] Document findings in an `evaluation_report.md`
 
 ### Phase 6 — Gradio App
-- [ ] Write an `inference.py` module:
+- [x] Write an `inference.py` module:
   - Load tokenizer and fine-tuned model
   - Define `summarize(text)` function using `model.generate()`
-  - Tune generation params: `num_beams=4`, `length_penalty=2.0`, `max_length=128`
-- [ ] Build `app.py` with Gradio:
-  - `gr.Interface` with a text input and summary output
+  - Tune generation params: `num_beams=4`, `length_penalty=2.0`, `max_length=64` by default
+- [x] Build `app.py` with Gradio:
+  - `gr.Blocks` with a text input and summary output
   - Add 3–5 pre-loaded XSum examples
   - Add a short description and project title in the UI
-- [ ] Test the app locally with `python app.py`
+- [x] Test the app locally with `python app.py`
 
 ### Phase 7 — Publishing
 - [ ] Push fine-tuned model and tokenizer to HuggingFace Hub (`model.push_to_hub(...)`)
@@ -86,8 +86,8 @@ This project fine-tunes `facebook/bart-base` on the **XSum dataset** to perform 
 
 ## ⏭️ Next Step
 
-**Continue with Phase 6 — Gradio App.**
+**Continue with Phase 7 — Publishing.**
 
-Build the local Gradio summarization app using the fine-tuned checkpoint saved at `models/bart_xsum_finetuned/`. The completed Phase 5 run evaluated all 11,334 XSum test examples and wrote results to `evaluation_report.md`.
+Publish the fine-tuned model and Gradio app. The completed Phase 6 app loads `models/bart_xsum_finetuned/`, runs local summarization through `src/inference.py`, and launches from `app.py`.
 
 The tokenized dataset and tokenizer are generated locally under `data/processed/xsum_bart_base/`.

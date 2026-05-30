@@ -422,7 +422,7 @@ ROUGE is computed with `use_stemmer=True`.
 {metric_table(metrics)}
 
 ## Baseline Comparison
-Published BART-large XSum reference scores are ROUGE-1 45.14, ROUGE-2 22.27, and ROUGE-L 37.25.
+Published BART-large XSum reference scores are ROUGE-1 0.4514, ROUGE-2 0.2227, and ROUGE-L 0.3725.
 This is a reference point, not an exact apples-to-apples comparison, because this project uses `facebook/bart-base` and the current checkpoint was fine-tuned for 1 epoch.
 
 Source: {BASELINE_SOURCE_URL}
