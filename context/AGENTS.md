@@ -53,12 +53,12 @@ This project fine-tunes `facebook/bart-base` on the **XSum dataset** to perform 
 - [x] Save full-training checkpoint with `trainer.save_model()` to `models/bart_xsum_finetuned/`
 
 ### Phase 5 — Evaluation
-- [ ] Run `trainer.evaluate()` on the test set
-- [ ] Report **ROUGE-1**, **ROUGE-2**, **ROUGE-L** scores
-- [ ] Compute **BERTScore** (Precision, Recall, F1) using `bert_score`
-- [ ] Compare results against published XSum baselines
-- [ ] Manually inspect at least 10 generated summaries (good cases + failure cases)
-- [ ] Document findings in an `evaluation_report.md`
+- [x] Run generated evaluation on the full test set
+- [x] Report **ROUGE-1**, **ROUGE-2**, **ROUGE-L** scores
+- [x] Compute **BERTScore** (Precision, Recall, F1) using `bert_score`
+- [x] Compare results against published XSum baselines
+- [x] Manually inspect at least 10 generated summaries (good cases + failure cases)
+- [x] Document findings in an `evaluation_report.md`
 
 ### Phase 6 — Gradio App
 - [ ] Write an `inference.py` module:
@@ -86,8 +86,8 @@ This project fine-tunes `facebook/bart-base` on the **XSum dataset** to perform 
 
 ## ⏭️ Next Step
 
-**Continue with Phase 5 — Evaluation.**
+**Continue with Phase 6 — Gradio App.**
 
-Run test-set evaluation for the fine-tuned `facebook/bart-base` checkpoint saved at `models/bart_xsum_finetuned/`. The completed Phase 4 run used the full train split for 1 epoch and wrote training metrics to `outputs/bart_xsum/training_summary.json`.
+Build the local Gradio summarization app using the fine-tuned checkpoint saved at `models/bart_xsum_finetuned/`. The completed Phase 5 run evaluated all 11,334 XSum test examples and wrote results to `evaluation_report.md`.
 
 The tokenized dataset and tokenizer are generated locally under `data/processed/xsum_bart_base/`.

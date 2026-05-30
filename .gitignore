@@ -11,5 +11,3 @@ checkpoints/
 models/
 wandb/
 runs/
-.codex/
-.agents/
